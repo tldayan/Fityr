@@ -1,0 +1,59 @@
+.AuthModalContainer {
+  position: relative;
+  background-color: var(--background);
+  border: 1px solid var(--border-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 400px);
+  z-index: 9999; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+}
+
+
+.authMode {
+  color: var(--PrimaryTextColor);
+  text-align: center
+}
+
+
+.closeButton {
+  position: absolute;
+  top: 2.5%;
+  right: 2%;
+  cursor: pointer;
+}
+
+.noAccount, .forgotPassword  {
+  cursor: pointer;
+  color: var(--SecondaryTextColor);
+  margin-left: auto;
+  font-size: 0.8rem
+}
+
+.forgotPassword{
+  margin-top: 5px;
+}
+.noAccount:hover,  .forgotPassword:hover {
+    text-decoration: underline;
+}
+
+
+.errorMessage {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.actionButton {
+  margin: 20px auto 0 auto;
+  padding: 8px 20px !important; 
+}
+
+.authActions {
+  display: flex;
+  flex-direction: column;
+}

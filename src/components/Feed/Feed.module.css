@@ -1,0 +1,15 @@
+
+
+.FeedContainer {
+/*   border: 1px solid red; */
+  margin-bottom: 100px;
+  min-height: 50vh;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #cccccc87;
+  width: 100%;
+   margin: 1rem 0;
+}
+

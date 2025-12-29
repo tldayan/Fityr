@@ -1,0 +1,47 @@
+.load_animation_black {
+  margin: 20px auto;
+  width: 30px;
+  height: 30px;
+  border: solid 2px var(--loadingSpinner);
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  transition: all 0.5s ease-in;
+  animation-name: rotate;
+  animation-duration: 1.0s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.no_margin {
+  margin: 0px auto !important;
+}
+
+
+/* Small spinner */
+.load_animation_black.small {
+/*   margin: 0; */
+  width: 20px;
+  height: 20px;
+  border: solid 2px var(--loadingSpinner);
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.load_animation_black.themed {
+  border: solid 2px var(--background);
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes rotate {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}

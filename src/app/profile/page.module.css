@@ -1,0 +1,142 @@
+
+
+.createProfileContainer {
+  border-style: solid;
+  border-color: white;
+  border-width: 12px;
+  border-radius: 2rem;
+  background-color: var(--formBackground);
+  padding: 25px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.formTitle {
+  color: var(--PrimaryTextColor)
+}
+
+.bannerWrapper {
+    position: relative;
+}
+
+.bannerContainer {
+  background-color: #ffffffb8;
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 1px;  
+  border-style: solid;
+  border-color: rgba(123, 123, 123, 0.103);
+  margin-bottom: 50px;
+  overflow:hidden;
+  object-fit: contain
+}
+
+
+
+.profilePicContainer {
+/*   position: absolute;
+  bottom: 0;
+  left: 2.5%; */
+  margin: 15px auto;
+  width: 100px;
+  height: 100px;
+  background-color: var(--TextInputColor);
+  border: 1px solid rgba(123, 123, 123, 0.103);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilePicContainer:hover {
+  background-color: var(--TextInputColor);
+}
+
+.profilePicInnerContainer {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: #fffffff3;
+  border: 1px solid rgba(123, 123, 123, 0.103);
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.profilePicInnerContainer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.profilePicInnerContainer:hover::after {
+  opacity: 1;
+}
+
+.editIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: rgba(255, 255, 255, 0.7);
+    z-index: 2;
+}
+
+.profilePicContainer:hover .editIcon {
+  opacity: 1;
+}
+
+
+
+.profilePic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+    z-index: 0;
+}
+
+
+.uploadBannerButton {
+  background-color: transparent;
+  border: none;
+  padding: 10px 12px;
+  border: 1px solid rgba(123, 123, 123, 0.103);
+  border-radius: 25px;
+  color: rgba(123, 123, 123, 0.49);
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+}
+.uploadBannerButton:hover {
+  cursor: pointer;
+  background-color: #f6f3f342;
+}
+
+.genderDropdown {
+  width: fit-content;
+}
+
+
+.headingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.editButton {
+  font-size: 0.8rem;
+}

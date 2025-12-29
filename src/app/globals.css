@@ -3,11 +3,75 @@
   padding: 0;
   margin: 0;
 }
+/* 
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/fonts/JosefinSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; 
+}
+
+:root {
+  --font-myfont: 'Josefin Sans', sans-serif;
+} */
+
+:root[theme="dark"] {
+  --background: #0a0908;
+  --border-color: #95919167;
+  --loadingSpinner: white;
+  --container-background: #333533;
+  --MainPrimaryButtonColor: #e8e3e3ff;
+  --PrimaryButtonColor: #f5f1f1ff;
+  --PrimaryTextColor: white;
+  --SecondaryTextColor: white;
+  --ComponentContainerColor: #0a0908;
+  --ComponentContainerHoverColor: #7a7a7a3e;
+  --postsStatsContainerColor: #333533ff;
+  --ButtonHover: #575656b0;
+  --TertiaryColor: #d1cbcbe7;
+  --TextInputColor: #333533ff;
+  --LightButtonHover: rgba(123, 129, 123, 0.51);
+  --LightButtonSelected:rgba(91, 93, 91, 0.51);
+  --disabledInput: rgba(218, 220, 218, 0.24);
+  --formBackground:  rgba(28, 29, 28, 0.48);
+  --shadow: rgba(186, 194, 194, 0.03);
+}
+
+:root[theme="light"] {
+  --background: white;
+  --border-color: #5b59591c;
+  --loadingSpinner: black;
+  --container-background: #ffffffff;
+  --MainPrimaryButtonColor: #000000ff;
+  --PrimaryButtonColor: #000000ff;
+  --PrimaryTextColor: #222222ff;
+  --SecondaryTextColor: gray;
+  --ComponentContainerColor: #ffffffff;
+  --ComponentContainerHoverColor: #7a7a7a0a;
+  --postsStatsContainerColor: #dcdcdc5c;
+  --ButtonHover: #57565622;
+  --TertiaryColor: #6c6c6c9f;
+  --TextInputColor: #bfbcbb0a;
+  --LightButtonHover: #d2d6d2a6;
+  --LightButtonSelected:rgba(91, 93, 91, 0.15);
+  --disabledInput: rgba(218, 220, 218, 0.24);
+  --formBackground: #ffffffff;
+  --shadow:rgba(186, 194, 194, 0.27);
+}
+
+
 
 
 body {
-  background-color: white;
-  border-style: solid;
-  border-color: black;
   height: 100vh;
+    background-color: var(--background);
+    transition: ease 0.5s;
+    font-family: var(--font-myfont);
+}
+
+.line {
+  border: none;
+  border-top: 1px solid #cccccc87; 
+  margin: 0.5rem 0;
 }

@@ -1,0 +1,88 @@
+.eventContainer {
+border: 1px solid #cccccc87;
+  margin: 0 auto;
+  border-radius: 10px;
+    background-color: var(--ComponentContainerColor);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 450px;
+  min-width: 350px;
+  padding: 20px;
+  text-decoration: none;
+/*   width: 200px;
+  height: 200px; */
+}
+
+.eventContainer:hover {
+  background-color: var(--ComponentContainerHoverColor);
+}
+
+.eventName {
+  color: var(--PrimaryTextColor);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.eventDesc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    color: var(--PrimaryTextColor);
+}
+
+
+
+.eventImage { 
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.eventDetailsContainer {
+/*   border: 1px solid red; */
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end; 
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.location {
+  margin-top: auto;
+  color: var(--SecondaryTextColor);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; 
+}
+
+.time {
+  color: var(--SecondaryTextColor);
+  font-size: 0.8rem;
+}
+
+.participantsContainer {
+/*   border: 1px solid red; */
+  display: flex;
+  gap: 2px;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  color: var(--SecondaryTextColor);
+  font-size: 0.8rem;
+}

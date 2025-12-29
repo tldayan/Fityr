@@ -1,0 +1,11 @@
+.contentContainer {
+  width: min(100%, 1000px);
+  margin: 50px auto;
+  padding: 10px;
+/*   border: 1px solid cyan; */
+/*   background-color: red; */
+  transition: ease 0.5s;
+/*   border-width: 1px;
+  border-style: solid;
+  border-color: black; */
+}

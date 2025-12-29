@@ -1,11 +1,10 @@
 .primary_button {
-  background-color: #000000ff;
+  background-color: var(--PrimaryTextColor);
+  color: var(--ComponentContainerColor);
   border: none;
-  color: white;
-  padding: 15px 32px;
+  padding: 0.3rem 0.9rem;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
@@ -13,8 +12,21 @@
   transition: transform 0.1s ease;
 }
 
+.noBackground {
+  font-size: 0.7rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--PrimaryTextColor)
+}
+
+.noBackground:hover {
+  text-decoration: underline;
+}
+
 .primary_button:hover {
-  background-color: #1f1f1fe2;
+  background-color: var(--SecondaryTextColor);
 }
 
 .primary_button:active {

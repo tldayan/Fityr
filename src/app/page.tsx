@@ -1,21 +1,13 @@
-import Link from "next/link";
-import styles from "./page.module.css";
+import { Suspense } from "react";
+import Feed from "@/components/Feed/Feed";
+import SearchComponent from "@/components/SearchComponent/SearchComponent";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
-export const metadata = {
-  title: "Home Page",
-  description: "Welcome to our site",
-};
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className={styles.app}>
-     
-      <main>
-        <h1>Home</h1>
-          <Link href="pages/createpost">create post</Link>
-        <h1>Home</h1>
-      </main>
-
-    </div>
+    <Suspense fallback={<LoadingSpinner />}>
+      <SearchComponent />
+      <Feed />
+    </Suspense>
   );
 }

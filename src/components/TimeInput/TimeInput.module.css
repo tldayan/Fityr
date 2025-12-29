@@ -1,0 +1,26 @@
+.label {
+  font-family: var(--font-myfont); 
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
+    color: var(--PrimaryTextColor);
+}
+
+.datePicker {
+  background-color: var(--TextInputColor);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  padding: 5px 8px;
+}
+
+.datePickerInput {
+  width: fit-content;
+  background-color: var(--TextInputColor);
+  border: 1px solid var(--border-color);
+  border-radius: 40px;
+  min-width: 220px;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--SecondaryTextColor);
+}

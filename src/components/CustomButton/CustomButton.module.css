@@ -1,0 +1,15 @@
+.customButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 8px 20px !important;
+}
+
+.title {
+  font-size: inherit;
+}
+
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.14);
+}

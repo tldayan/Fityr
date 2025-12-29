@@ -1,0 +1,11 @@
+.memberSince {
+    font-size: 0.8rem;
+    color: var(--SecondaryTextColor)
+}
+
+.userInfoContainer {
+  gap: 5px;
+/*   border: 1px solid red; */
+  display: flex;
+  flex-direction: column
+}

@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0
+}
+
+
+.chipButton {
+  border: none;
+  padding: 5px 15px;
+  border-radius: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: var(--font-myfont);
+  color: var(--SecondaryTextColor);
+  font-size: 0.7rem;
+}
+
+.chipButton:hover {
+  background-color: var(--ButtonHover);
+}
+
+.chipButton.selected {
+  background-color: var(--ButtonHover);
+}

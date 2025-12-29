@@ -1,5 +1,5 @@
 {
-  "name": "petrolheads",
+  "name": "fityr",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,17 +9,28 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.7",
+    "@stytch/nextjs": "^21.15.0",
+    "@stytch/stytch-js": "^3.3.4",
+    "@stytch/vanilla-js": "^5.40.0",
+    "@tanstack/react-query": "^5.90.5",
+    "@tanstack/react-query-devtools": "^5.90.2",
+    "mysql2": "^3.15.3",
+    "next": "15.5.3",
     "react": "19.1.0",
+    "react-datepicker": "^8.10.0",
     "react-dom": "19.1.0",
-    "next": "15.5.3"
+    "react-easy-crop": "^5.5.3",
+    "stytch": "^12.43.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
-    "@eslint/eslintrc": "^3"
+    "typescript": "^5"
   }
 }

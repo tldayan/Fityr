@@ -1,0 +1,113 @@
+
+
+.link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+} 
+
+.title {
+  color: var(--PrimaryTextColor);
+  font-size: 1.2rem;
+}
+
+
+.first_name {
+  color: var(--TertiaryColor);
+  font-size: 0.8rem;
+  text-decoration: none; 
+}
+
+.name {
+  text-decoration: none;
+  cursor: pointer;
+ color: var(--TertiaryColor);
+}
+
+.name:hover {
+  text-decoration: underline;
+}
+.description {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  overflow: hidden;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  color: var(--SecondaryTextColor);
+}
+
+.description.minimized {
+    display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.postsStatsContainer {
+/*   background-color: var(--postsStatsContainerColor); */
+  display: flex;
+  flex-direction: row;
+  height: 35px;
+  align-items: center;
+  font-size: 0.9rem;
+  gap:10px;
+  width: fit-content;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
+.voteCount {
+  color: var(--PrimaryTextColor);
+}
+
+
+.voteButtons {
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.voteButtons:hover {
+  background-color: var(--ButtonHover);
+}
+
+.voteButtons.upvoted {
+  background-color: #5be95b5c;
+}
+.voteButtons.downvoted {
+  background-color: #ef49493c;
+}
+
+.mainPostsStatsContainer {
+    margin-top: 15px;
+  display: flex;
+    height: 100%;
+  align-items: center;
+  gap: 10px
+}
+
+.share {
+  stroke: var(--PrimaryTextColor);
+}
+
+
+.shareButtonContainer,.commentButtonContainer {
+/*   background-color: var(--postsStatsContainerColor); */
+  padding: 0px 15px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+  height: 35px;
+  gap: 5px;
+  border-radius: 5px;
+}
+.shareButtonContainer:hover, .commentButtonContainer:hover {
+  background-color: var(--ButtonHover);
+}
+
+
+
+
+.commentCount {
+  font-size: 0.9rem;
+    color: var(--PrimaryTextColor);
+}
+

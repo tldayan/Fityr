@@ -1,0 +1,38 @@
+.postContainer {
+  border-style: solid;
+  border-color: red;
+  border-width: 12px;
+  border-radius: 2rem;
+  background-color: #ffffffff;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column
+}
+
+.title {
+  font-size: 1.4rem
+}
+
+.description {
+  line-height: 1.4rem
+}
+
+.commentContainer {
+/*   border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px
+}
+
+.emptyPostsNotice {
+  color: var(--SecondaryTextColor);
+  margin: 200px auto;
+  text-align: center
+}
+
+.commentButton {
+  height: 40px;
+}

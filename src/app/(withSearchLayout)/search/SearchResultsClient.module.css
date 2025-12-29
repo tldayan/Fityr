@@ -1,0 +1,65 @@
+.typeButton {
+  background-color: var(--postsStatsContainerColor);
+  color: var(--SecondaryTextColor);
+  font-size: 0.75rem;
+  padding: 5px 20px;
+  font-weight: light
+}
+
+.typeButton:hover {
+  background-color: var(--LightButtonHover);
+}
+
+.active {
+  border:1px solid var(--LightButtonSelected); 
+  background-color: var(--LightButtonHover);
+}
+
+.typeButtonsContainer {
+  display: flex;
+  align-items: center;
+  justify-center: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.userprofileContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
+.userprofileContainer:hover {
+  background-color: var(--ComponentContainerHoverColor)
+}
+
+.username {
+  font-size: 1rem;
+    color: var(--PrimaryTextColor)
+}
+
+.memberSince {
+    font-size: 0.8rem
+}
+
+.usernameContainer {
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  color: var(--SecondaryTextColor)
+}
+
+.searchResultsContainer {
+/*     border: 1px solid cyan; */
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.noResults {
+  color: var(--SecondaryTextColor);
+  text-align: center;
+  margin-top: 60px;
+  font-size: 1.1rem
+}

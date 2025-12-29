@@ -1,0 +1,60 @@
+.hamburger {
+  margin-left: 20px;
+  position: relative;
+  width: 1.2em;
+  height: 1.2em;
+  font-size: inherit;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hamburger.is-sm {
+  font-size: 1.5rem;
+}
+
+.hamburger.is-md {
+  font-size: 1.5rem;
+}
+
+.hamburger.is-lg {
+  font-size: 2rem;
+}
+
+.hamburger-line {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 0.125em;
+  border-radius: 0.125em;
+  background: var(--PrimaryTextColor);
+  transition: inherit;
+}
+
+.hamburger-line:nth-child(1) {
+  top: 0.125em;
+}
+
+.hamburger.is-active .hamburger-line:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(-135deg);
+}
+
+.hamburger-line:nth-child(2) {
+  top: 0.438em;
+}
+
+.hamburger.is-active .hamburger-line:nth-child(2) {
+  width: 0;
+  right: 50%;
+}
+
+.hamburger-line:nth-child(3) {
+  top: 0.75em;
+  width: 0.625em;
+}
+
+.hamburger.is-active .hamburger-line:nth-child(3) {
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%) rotate(135deg);
+}

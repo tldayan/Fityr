@@ -1,14 +1,14 @@
-// app/Context/SidebarContext.tsx
-"use client";
-import React, { createContext, useState, ReactNode, useContext } from "react";
 
-// Define the context type
+"use client";
+import React, { createContext, useState, useContext } from "react";
+
+
 type SidebarContextType = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-// Create the context with proper typing
+
 export const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
 

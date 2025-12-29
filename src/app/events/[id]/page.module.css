@@ -1,0 +1,110 @@
+.eventContainer {
+/*   border: 1px solid red; */
+  margin: 0 auto 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.eventImage {
+  object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.eventDetails {
+  margin: 10px 0;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  letter-spacing: 1px;
+}
+
+
+.eventDescription {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: var(--SecondaryTextColor);
+  font-family: var(--font-myfont);
+  line-height: 20px;
+}
+
+.attendEventButton {
+  width: 150px;
+  height: 40px;
+  margin: 20px auto;
+}
+
+.leaveButton {
+  background-color: #ff4d4d !important;
+  border-color: #ff4d4d !important;
+  color: white !important;
+}
+
+
+
+
+.mainParticipantsContainer {
+  display :flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  gap: 30px;
+}
+
+.participantsContainer {
+/*   border: 2px solid red; */
+  gap: 10px;
+  display: flex;
+ overflow-x: auto;  
+  overflow-y: hidden;
+  padding-bottom: 5px; 
+  white-space: nowrap;
+}
+
+.participantProfileContainer {
+/*   border: 1px solid cyan; */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--PrimaryTextColor);
+  width: 80px;
+}
+
+.participantName {
+  font-size: 0.7rem;
+  overflow: hidden;          
+  white-space: nowrap;       
+  text-overflow: ellipsis;   
+  display: block;         
+  width: 100%;               
+}
+
+.date {
+ font-size: 0.9rem;
+ color: var(--SecondaryTextColor);
+}
+
+.location {
+ font-size: 0.9rem;
+ color: var(--SecondaryTextColor);
+}
+
+
+.host {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: var(--SecondaryTextColor);
+  background-color: var(--LightButtonHover);
+  padding: 3px 6px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.hostname {
+  font-size: 0.9rem;
+}
+
+.title {
+  color: var(--PrimaryTextColor)
+}

@@ -1,0 +1,32 @@
+.primary_icon_button {
+/*     background-color: #000000ff; */
+  border: none;
+  color: white;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 12rem;
+  transition: transform 0.1s ease;
+  gap: 5px;
+}
+
+
+/* .primary_icon_button:hover {
+  background-color: #1f1f1fe2;
+} */
+
+.primary_icon_button:active {
+  transform: scale(0.96); 
+}
+
+
+.no_background {
+  background-color: transparent;
+}
+
+
+.buttonText {
+  color: #c9c7c7ff
+}

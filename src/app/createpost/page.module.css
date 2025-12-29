@@ -1,0 +1,75 @@
+.createPostContainer {
+  border-style: solid;
+  border-color: var(--border-color);
+  border-width: 1px;
+  border-radius: 2rem;
+  background-color: var(--ComponentContainerColor);
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column
+}
+
+.addImageButton {
+  background-color: black
+}
+
+.saveDraftButton {
+  margin-left: auto
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+/*   border: 2px solid red; */
+  gap: 10px
+}
+
+.imgContainer {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  position: relative
+}
+
+.imgContainer:hover {
+  border: 1px solid var(--TertiaryColor);
+}
+
+.mediaContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;       
+  gap: 10px;
+  margin-top: 10px;
+  overflow-x: auto;      
+  overflow-y: hidden;   
+  max-width: 100%;     
+  padding-bottom: 5px;    
+}
+
+.xContainer {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  justify-content: center;
+  position: absolute;
+  top: 6%;
+  right: 6%;
+  border-radius: 50%;
+  background-color: #3c3c3caf;
+  cursor: pointer
+}
+
+.xContainer:hover {
+    background-color: #353535e4;
+}
+
+
+.media_img {
+  flex: 0 0 auto;          /* ⬅️ prevents shrinking and keeps fixed size */
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 10px;
+}

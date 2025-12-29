@@ -1,0 +1,23 @@
+.componentContainer {
+  width: 100%;
+/*   margin: 50px auto; */
+/*   border: 1px solid black; */
+  background-color: var(--ComponentContainerColor);
+/*   transition: ease 0.5s; */
+  padding: 15px 10px;
+/*   border-top: 1px solid #4d4d4d27; */
+/*   border-top: none; */
+  border-radius: 10px;
+}
+
+.componentContainer:hover {
+  background-color: var(--ComponentContainerHoverColor);
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+
+.hover {
+  background-color: var(--ComponentContainerHoverColor);
+}
+

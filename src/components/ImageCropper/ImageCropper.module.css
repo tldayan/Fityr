@@ -1,0 +1,57 @@
+.cropperOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.cropperContainer {
+  position: relative;
+  width: 90vw;
+  max-width: 420px;
+  height: 400px;
+  background-color: #1f2937;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.doneButton {
+  background-color: #2563eb;
+  color: white;
+}
+
+.doneButton:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.02);
+}
+
+.cancelButton {
+  background-color: #6b7280; 
+  color: white;
+}
+
+.cancelButton:hover {
+  background-color: #4b5563; 
+  transform: scale(1.02);
+}

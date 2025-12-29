@@ -1,0 +1,13 @@
+.mainContainer {
+    border-style: solid;
+  border-color: var(--border-color);
+  border-width: 1px;
+  border-radius: 2rem;
+  background-color: var(--ComponentContainerColor);
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  height: 80vh;
+}
+
+

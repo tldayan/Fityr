@@ -1,0 +1,9 @@
+.searchContainer {
+  margin: 20px auto;
+width: clamp(50%, 100%, 600px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
