@@ -11,7 +11,9 @@ type PostPageProps = {
   };
 };
 
-export default async function PostPage({ params }: PostPageProps): Promise<JSX.Element> {
+export default async function PostPage({
+  params,
+}: PostPageProps): Promise<JSX.Element> {
   const { id } = params;
 
   const cookieStore = await cookies();
@@ -21,10 +23,16 @@ export default async function PostPage({ params }: PostPageProps): Promise<JSX.E
     `${BASE_URL}${ENDPOINTS.POSTS}/${id}`,
     "GET",
     {},
-    { headers: { Authorization: jwt ? `Bearer ${jwt}` : "" } }
+    {
+      headers: {
+        Authorization: jwt ? `Bearer ${jwt}` : "",
+      },
+    }
   );
 
-  if (!res.ok || !res.data) throw new Error(`Failed to fetch post: ${res.error}`);
+  if (!res.ok || !res.data) {
+    throw new Error(`Failed to fetch post: ${res.error}`);
+  }
 
   return <PostClient post={res.data} />;
 }
