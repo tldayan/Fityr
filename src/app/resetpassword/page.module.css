@@ -1,0 +1,11 @@
+.container {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  border-radius: 10px;
+}

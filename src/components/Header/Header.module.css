@@ -1,16 +1,26 @@
 .header {
-  color: red;
-  border: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
   height: 7vh;
   display: flex;
-  justify-content:space-between;
   align-items: center;
- position: sticky;
-  top: 0;
+  justify-content: space-between;
   background-color: var(--background);
-   z-index: 1000; 
-/*   width: 100vw */
-transition: ease 0.5s
+  border: 1px solid var(--border-color);
+  z-index: 1000;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-accentFont);
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--MainPrimaryButtonColor);
+  cursor: pointer;
+  text-decoration: none;
 }
 
 
@@ -30,17 +40,9 @@ transition: ease 0.5s
   background: transparent;
 }
 
-.logo {
-  font-family: var(--font-accentFont);
-  font-size: 2rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  color: var(--MainPrimaryButtonColor);
-  margin-right: 10px;
-}
 
 .profilePic {
-  margin: 10px 
+  margin-right: 10px 
 }
 
 .authContainer {
@@ -48,4 +50,9 @@ transition: ease 0.5s
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.username {
+  font-size: 0.9rem;
+  font-family: var(--font-titleFont);
 }

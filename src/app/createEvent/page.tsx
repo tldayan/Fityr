@@ -12,6 +12,7 @@ import EditIcon from "../../../public/pen.svg";
 import { BASE_URL, ENDPOINTS } from '@/_lib/apiEndpoints';
 import { apiClient } from '@/utils/apiClient';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
+import toast from 'react-hot-toast';
 
 
 export default function Page() {
@@ -112,14 +113,22 @@ export default function Page() {
     setEventInfo(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleHostEvent = async() => {
-    console.log("Final event info:", eventInfo);
+  const handleHostEvent = async () => {
+    try {
+      const response = await apiClient(`${BASE_URL}${ENDPOINTS.EVENTS.CREATE}`, "POST", eventInfo);
 
-    const response = await apiClient(`${BASE_URL}${ENDPOINTS.EVENTS.CREATE}`, "POST", eventInfo)
+      if (!response.ok) {
+        toast.error(response.error);
+        return;
+      }
 
-    console.log(response)
-
+      toast.success("Event created successfully!");
+      
+    } catch (err) {
+      toast.error("Something went wrong!");
+    }
   };
+
 
   return (
     <div className={styles.createEventContainer}>

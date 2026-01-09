@@ -21,9 +21,13 @@ export function useApiMutation<
     mutationFn: async (variables: TVariables) => {
       const res = await apiClient<TData>(url, options?.method || "POST", variables);
 
-      if (!res.ok) {
+     /*  if (!res.ok) {
         throw new Error(res.error || "API request failed");
-      }
+      } */
+
+         if (!res.ok) {
+    throw res; // <-- Throw the whole response, not just Error
+  }
 
       return res.data as TData;
     },

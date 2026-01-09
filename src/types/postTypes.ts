@@ -1,3 +1,4 @@
+import { images } from './../utils/assets';
 export interface PostItemProps {
   id: number;
   title: string;
@@ -5,6 +6,7 @@ export interface PostItemProps {
   created_at: string;
   vote: number;
   username: string;
+  images?: string[];
   children?: React.ReactNode;
   noStats?: boolean
   showDivider?: boolean
@@ -28,4 +30,5 @@ export interface Post {
   username: string;
   commentCount: number; 
    userVote: "upvote" | "downvote" | null
+   images?: string[]
 }

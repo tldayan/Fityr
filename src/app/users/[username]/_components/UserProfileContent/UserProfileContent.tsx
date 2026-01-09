@@ -49,8 +49,6 @@ export default function UserProfileContent({
   });
 
   const comments = commentsQuery.data?.pages.flatMap(page => page.items) ?? [];
-
-
   const activeQuery = profileSort === 'Posts' ? postsQuery : commentsQuery;
 
   const {
@@ -68,7 +66,20 @@ export default function UserProfileContent({
 
   return (
     <div className={styles.contentListContainer}>
-      {isLoading && <LoadingSpinner />}
+    {isLoading && <LoadingSpinner />}
+
+    {!isLoading && profileSort === 'Posts' && posts.length === 0 && (
+      <p className={styles.emptyNotice}>No posts yet…</p>
+    )}
+
+    {!isLoading && profileSort === 'Events' && events.length === 0 && (
+      <p className={styles.emptyNotice}>No events yet…</p>
+    )}
+
+    {!isLoading && profileSort === 'Comments' && comments.length === 0 && (
+      <p className={styles.emptyNotice}>No comments yet…</p>
+    )}
+
 
       {profileSort === 'Posts'
         ? posts.map((post, index) => (
@@ -83,6 +94,7 @@ export default function UserProfileContent({
               vote={post.vote}
               commentCount={post.commentCount}
               userVote={post.userVote}
+              images={post.images}
             />
             {index < posts.length - 1 && <hr className={globalStyles.divider} />}
           </React.Fragment>

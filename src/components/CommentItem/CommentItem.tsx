@@ -18,6 +18,7 @@ import { apiClient } from "@/utils/apiClient";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import useDebounce from "@/hooks/useDebounce";
 import { useRouter } from 'next/navigation';
+import toast from "react-hot-toast";
 
 interface CommentItemProps {
   comment: CommentResponse;
@@ -61,6 +62,15 @@ const createReplyMutation = useApiMutation<CreateReplyResponse, CommentInfo>(
   `${BASE_URL}${ENDPOINTS.COMMENTS(comment.post_id)}`,
   {
     method: "POST",
+    onError: (error: any) => {
+        if (error?.status === 401) {
+          toast.error("Please sign up to add replies!");
+        } else if (error?.status === 429) {
+          toast.error("Too many replies, please slow down!");
+        } else {
+          toast.error("Failed to create reply!");
+        }
+      },
     onSuccess: (newComment) => {
       setReply("");
 

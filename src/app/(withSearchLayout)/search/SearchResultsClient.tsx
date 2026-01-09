@@ -29,6 +29,7 @@ interface Props {
 }
 
 export default function SearchResultsClient({ initialData, type }: Props) {
+  console.log("initial", initialData)
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -79,6 +80,7 @@ export default function SearchResultsClient({ initialData, type }: Props) {
                 username={post.username}
                 created_at={post.created_at}
                 userVote={post.userVote}
+                images={post.images}
               />
             ))
           ) : (

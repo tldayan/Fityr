@@ -13,3 +13,23 @@
    margin: 1rem 0;
 }
 
+.actionsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a.createPostButton {
+  color: var(--SecondaryTextColor);
+  text-decoration: none;
+  padding: 5px;
+  font-size: 0.75rem;
+}
+
+
+/* .createPostButton:hover {
+  background-color: var(--ButtonHover);
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 20px;
+} */

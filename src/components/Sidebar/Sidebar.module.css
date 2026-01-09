@@ -1,6 +1,6 @@
 .sidebar {
   position: fixed;
-  top: 7vh;
+  top: 13vh; /* 7vh before */
   left: 0; 
   transform: translateX(-100%);
   width: 15vw;

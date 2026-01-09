@@ -14,6 +14,8 @@ import {
 import { useInfiniteData } from '@/hooks/useInfiniteQuery';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { Post } from '@/types/postTypes';
+import buttonStyles from "../../app/globalStyles/buttonStyles.module.css"
+import Link from 'next/link';
 
 
 interface FeedClientProps {
@@ -66,8 +68,10 @@ function FeedContent() {
         <LoadingSpinner />
       ) : (
         <>
-          <ChipSelector selected={sortType} onChange={handleSortChange} options={["New", "Old", "Best"]} />
-
+          <div className={styles.actionsContainer}>
+            <ChipSelector selected={sortType} onChange={handleSortChange} options={["New", "Old", "Best"]} />
+            <Link href={"/createpost"} className={`${buttonStyles.noBackground} ${styles.createPostButton}`}>Create post</Link>
+          </div>
           {allPosts.map((post, index) => (
             <React.Fragment key={post.id}>
               <PostItem
@@ -79,6 +83,7 @@ function FeedContent() {
                 vote={post.vote}
                 commentCount={post.commentCount}
                 userVote={post.userVote}
+                images={post.images}
               />
 
      

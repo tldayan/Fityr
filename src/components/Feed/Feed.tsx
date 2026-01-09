@@ -3,6 +3,7 @@ import { apiClient, ApiResponse } from '@/utils/apiClient';
 import { BASE_URL, ENDPOINTS } from '@/_lib/apiEndpoints';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { Post } from '@/types/postTypes';
+import { cookies } from 'next/headers';
 
 export interface PaginationMeta {
   total: number;
@@ -16,13 +17,21 @@ export default async function Feed() {
   const queryClient = new QueryClient();
   const defaultSort = 'New';
 
+  const cookieStore = await cookies();
+  const jwt = cookieStore.get("stytch_session_jwt")?.value;
+  
+
   await queryClient.prefetchInfiniteQuery({
   queryKey: ['posts', defaultSort],
   queryFn: async ({ pageParam = 1 }) => {
     const res: ApiResponse<{ data?: Post[]; meta?: PaginationMeta }> =
       await apiClient(
         `${BASE_URL}${ENDPOINTS.POSTS}?sort=${defaultSort.toLowerCase()}&page=${pageParam}&limit=10`
-      );
+      ,"GET", {},{
+      headers: {
+        Authorization: jwt ? `Bearer ${jwt}` : "",
+      },
+    });
 
     if (!res.ok) throw new Error(res.error ?? "Failed to fetch posts");
 

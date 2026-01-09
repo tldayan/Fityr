@@ -1,3 +1,9 @@
 /* .contentListContainer {
   border: 1px solid red;
 } */
+
+.emptyNotice {
+  color : var(--SecondaryTextColor);
+  margin: 100px auto;
+  text-align: center
+}

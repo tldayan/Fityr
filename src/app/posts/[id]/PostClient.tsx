@@ -14,6 +14,7 @@ import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { useQueryClient } from "@tanstack/react-query";
 import { Post } from "@/types/postTypes";
+import toast from "react-hot-toast";
 
 
 
@@ -27,6 +28,15 @@ export default function PostClient({ post }: { post: Post }) {
     `${BASE_URL}${ENDPOINTS.COMMENTS(post.id)}`,
     {
       method: "POST",
+      onError: (error: any) => {
+        if (error?.status === 401) {
+          toast.error("Please sign up to add comments!");
+        } else if (error?.status === 429) {
+          toast.error("Too many comments, please slow down!");
+        } else {
+          toast.error("Failed to create comment!");
+        }
+      },
       onSuccess: (newComment) => {
         setComment("");
         queryClient.setQueryData(
@@ -92,6 +102,7 @@ const {
         created_at={post.created_at}
         commentCount={post.commentCount}
         userVote={post.userVote}
+        images={post.images}
       >
         <h1 className={styles.title}>{post.title}</h1>
         <p className={styles.description}>{post.description}</p>

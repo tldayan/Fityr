@@ -19,9 +19,9 @@ export default function Sidebar() {
       <li className={`${styles.sidebarLink} ${myFont.className}`}>
         <Link className={styles.links} href="/chats">Chats</Link>
       </li>
-      <li className={`${styles.sidebarLink} ${myFont.className}`}>
+{/*       <li className={`${styles.sidebarLink} ${myFont.className}`}>
         <Link className={styles.links} href="/groups">Groups</Link>
-      </li>
+      </li> */}
       <li className={`${styles.sidebarLink} ${myFont.className}`}>
         <Link className={styles.links} href="/profile">Profile</Link>
       </li>

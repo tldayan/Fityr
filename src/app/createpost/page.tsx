@@ -14,6 +14,8 @@ import { useApiMutation } from '@/hooks/useApiMutation';
 import { BASE_URL, ENDPOINTS } from '@/_lib/apiEndpoints';
 import X from "@/app/assets/icons/x.svg"
 import Image from 'next/image';
+import toast from 'react-hot-toast';
+import { uploadImagesToS3 } from '@/utils/uploadImages';
 
 interface PostInfo {
   title: string;
@@ -29,6 +31,7 @@ const [postInfo, setPostInfo] = useState<PostInfo>({ title: "", description: "" 
 const [media, setMedia] = useState<File[]>([]);
 const fileInputRef = useRef<HTMLInputElement>(null);
 const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+const [loading, setLoading] = useState(false)
 
 
 useEffect(() => {
@@ -53,9 +56,22 @@ useEffect(() => {
   }
   
   
-  const saveDraft = () => {
-    localStorage.setItem("postInfo", JSON.stringify({title: postInfo.title, description: postInfo.description}))
-  }
+const saveDraft = () => {
+  if (typeof window === "undefined") return;
+
+  if (!postInfo.title.trim() && !postInfo.description.trim()) return;
+
+  localStorage.setItem(
+    "postInfo",
+    JSON.stringify({
+      title: postInfo.title,
+      description: postInfo.description,
+    })
+  );
+
+  toast.success("Post saved as draft");
+};
+
 
 
   const handleMediaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,22 +97,47 @@ const createPostMutation = useApiMutation<{ id: string }, PostInfo>(
   {
     method: "POST",
     queryKeyToInvalidate: ["posts"], 
-    
     onSuccess: () => {
       setPostInfo({ title: "", description: "" });
       setMedia([]);
       localStorage.removeItem("postInfo");
     },
+    onError: (err) => {
+      console.error(err);
+    },
   }
 );
 
-  const handlePost = () => {
-    if (!postInfo.title.trim() || !postInfo.description.trim()) {
-      alert("Please fill in all fields");
-      return;
+
+const handlePost = async () => {
+  if (!postInfo.title.trim() || !postInfo.description.trim()) {
+    toast.error("Please fill in all fields");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const imageUrls = media.length
+      ? await uploadImagesToS3(media)
+      : [];
+
+    await createPostMutation.mutateAsync({
+      ...postInfo,
+      images: imageUrls,
+    });
+
+  } catch (err: any) {
+    if(err.status === 401) {
+      toast.error("Please log in to create posts")
+    } else {
+      toast.error("Failed to create post");
     }
-    createPostMutation.mutate(postInfo);
-  };
+
+  } finally {
+    setLoading(false);
+  }
+};
 
 
   const handleImageDelete = (index: number) => {
@@ -119,7 +160,7 @@ const createPostMutation = useApiMutation<{ id: string }, PostInfo>(
               </div>
               <Image
                 onClick={() => handleImageSelect(index)}
-                className={`${styles.media_img} ${shadowStyles.containerShadow}`}
+                className={`${styles.media_img}`}
                 src={URL.createObjectURL(file)}
                 alt={`Media ${index}`}
                 width={200} 
@@ -133,7 +174,8 @@ const createPostMutation = useApiMutation<{ id: string }, PostInfo>(
 
 
       <div className={styles.buttonContainer}>
-        <CustomIconButton onClick={handleButtonClick} icon={AddImageIcon} className={`${ButtonStyles.primary_icon_button} ${styles.addImageButton} ${myFont.className}`} />
+        <CustomButton title='Upload Images' onClick={handleButtonClick} icon={AddImageIcon} className={`${ButtonStyles.primary_button} ${styles.addImageButton} ${myFont.className}`} />
+          
           <input
               type="file"
               accept="image/*"
@@ -143,7 +185,7 @@ const createPostMutation = useApiMutation<{ id: string }, PostInfo>(
               onChange={handleMediaChange}
             />
         <CustomButton title='Save Draft' onClick={saveDraft} className={`${ButtonStyles.primary_button} ${myFont.className} ${styles.saveDraftButton}`} />
-        <CustomButton onClick={handlePost} className={`${ButtonStyles.primary_button} ${myFont.className}`} title='Post'/>
+        <CustomButton loading={loading} onClick={handlePost} className={`${ButtonStyles.primary_button} ${myFont.className}`} title='Post'/>
       </div>
 
 

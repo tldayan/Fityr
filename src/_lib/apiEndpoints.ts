@@ -4,6 +4,7 @@ export const ENDPOINTS = {
   POSTS: "/posts",
   SEARCH: "/search",
   LOGIN: "/auth/login",
+  CHECK_PASSWORD_STRENGTH: "/auth/checkPasswordStrength",
   SIGNUP: "/auth/signup",
   REFRESH: "/auth/refresh",
   CHECK_USERNAME:"/auth/checkusername",

@@ -12,6 +12,7 @@ import { BASE_URL, ENDPOINTS } from '@/_lib/apiEndpoints';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { LoginResponse, SignupResponse, User } from '@/types/user';
 import { queryClient } from "@/utils/reactQueryClient";
+import toast from 'react-hot-toast';
 
 
 interface AuthModalProps {
@@ -37,6 +38,7 @@ export default function AuthModal({ authMode, setAuthMode }: AuthModalProps) {
   });
 
   const [showOtpUi, setShowOtpUi] = useState(false);
+  const [showForgetPasswordUi, setShowForgetPasswordUi] = useState(false)
   const [errorMessage, setErrorMessage] = useState("");
   const stytchClient = useStytch();
   const modalRef = useRef<HTMLDivElement>(null);
@@ -51,10 +53,8 @@ export default function AuthModal({ authMode, setAuthMode }: AuthModalProps) {
 
 const getErrorMessage = (error: unknown): string => {
 
-
   if (typeof error === "object" && error !== null && "error_type" in error) {
     const stytchError = error as { error_type: string };
-    alert(stytchError.error_type)
 
     switch (stytchError.error_type) {
       case "user_lock_limit_reached":
@@ -63,6 +63,8 @@ const getErrorMessage = (error: unknown): string => {
         return "Incorrect email or password.";
       case "email_not_found":
         return "No account found with this email.";
+      case "invalid_email":
+        return "Email format is invalid";
       default:
         return "Authentication failed. Please try again.";
     }
@@ -74,8 +76,26 @@ const getErrorMessage = (error: unknown): string => {
   return "Something went wrong. Please try again.";
 };
 
+const handleOAuth = async() => {
+  
+  try {
+
+    const OAuthReq = await stytchClient.oauth.google.start({
+      login_redirect_url: 'http://localhost:3000',
+      signup_redirect_url: 'http://localhost:3000',
+      custom_scopes: ["profile"],
+    })
+
+    console.log(OAuthReq)
+
+  } catch(err: any) {
+    console.log(err.message)
+  }
+
+}
 
   const handleSignUp = async () => {
+    setErrorMessage("")
     setLoading(true);
     try {
       if (!authInfo.email || !authInfo.password || !authInfo.username) {
@@ -108,6 +128,7 @@ const getErrorMessage = (error: unknown): string => {
   };
 
   const handleEmailOTPVerification = async () => {
+    setErrorMessage("")
     setLoading(true);
     try {
       if (!authInfo.methodId || !authInfo.emailOTP) {
@@ -134,8 +155,12 @@ const getErrorMessage = (error: unknown): string => {
         queryClient.setQueryData(["me"], singUpResponse.data.user);
       }
 
+      await stytchClient.session.revoke();
+
       setErrorMessage("");
-/*       window.location.reload(); */
+      setShowOtpUi(false)
+      setAuthMode("Log In")
+      toast.success(`Click "Log in" to use your new account!`)
     } catch (error: unknown) {
       setErrorMessage(getErrorMessage(error));
     } finally {
@@ -144,6 +169,7 @@ const getErrorMessage = (error: unknown): string => {
   };
 
   const handleLogin = async () => {
+    setErrorMessage("")
     setLoading(true);
     try {
       if (!authInfo.email || !authInfo.password) {
@@ -179,6 +205,22 @@ const getErrorMessage = (error: unknown): string => {
     }
   };
 
+  const handleForgotPassword = async() => {
+    setErrorMessage("")
+    setLoading(true)
+    try {
+      const res = await stytchClient.passwords.resetByEmailStart({email: authInfo.email})
+      console.log(res)
+      toast.success("Password reset email sent!")
+      setShowForgetPasswordUi(false)
+      setAuthMode("Log In")
+    } catch (error) {
+      setErrorMessage(getErrorMessage(error));
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -192,7 +234,7 @@ const getErrorMessage = (error: unknown): string => {
   return (
     <BackgroundOverlay>
       <div ref={modalRef} className={styles.AuthModalContainer}>
-        <h3 className={styles.authMode}>{authMode}</h3>
+        <h3 className={styles.authMode}>{showForgetPasswordUi ? "Reset Password" : authMode}</h3>
         <X
           onClick={() => setAuthMode("")}
           color="black"
@@ -210,15 +252,38 @@ const getErrorMessage = (error: unknown): string => {
               onChange={handleAuthInfo}
             />
             <CustomButton
+              loading={loading}
               title='Verify Email & Create Account'
+              disabled={loading}
+              className={`${ButtonStyles.primary_button} ${styles.actionButton}`}
               onClick={handleEmailOTPVerification}
             />
+            {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+          </div>
+        )}
+    
+        {showForgetPasswordUi && (
+          <div>
+            <CustomTextInput
+              name='email'
+              label='Enter email to reset password'
+              type='text'
+              onChange={handleAuthInfo}
+              value={authInfo.email}
+            />
+            <CustomButton
+              loading={loading}
+              title='Send reset link'
+              disabled={loading}
+              className={`${ButtonStyles.primary_button} ${styles.actionButton}`}
+              onClick={handleForgotPassword}
+            />
+            {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
           </div>
         )}
 
-        {!loading ? (
           <>
-            {!showOtpUi && (
+            {!showOtpUi && !showForgetPasswordUi && (
               <div className={styles.authActions}>
                 {authMode === "Sign Up" && (
                   <CustomTextInput
@@ -247,38 +312,37 @@ const getErrorMessage = (error: unknown): string => {
                   value={authInfo.password}
                 />
                 <p
-                  onClick={() => setAuthMode("Sign Up")}
+                  onClick={() => setShowForgetPasswordUi(true)}
                   className={styles.forgotPassword}
                 >
                   Forgot password?, Reset now.
                 </p>
                 {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
                 <CustomButton
+                  loading={loading}
                   className={`${ButtonStyles.primary_button} ${styles.actionButton}`}
                   title={authMode === "Log In" ? 'Log In' : 'Sign Up'}
                   onClick={authMode === "Log In" ? handleLogin : handleSignUp}
                 />
+                {/* <button className={styles.google_btn} onClick={handleOAuth}>Continue with Google</button> */}
               </div>
             )}
 
             {authMode === "Log In" ? (
               <p
-                onClick={() => setAuthMode("Sign Up")}
+                onClick={() => {setShowForgetPasswordUi(false); setAuthMode("Sign Up")}}
                 className={styles.noAccount}
               >
                Don&apos;t have an account? Sign up.</p>
             ) : (
               <p
-                onClick={() => setAuthMode("Log In")}
+                onClick={() => {setShowForgetPasswordUi(false); setAuthMode("Log In")}}
                 className={styles.noAccount}
               >
                 Already have an account? Log In.
               </p>
             )}
           </>
-        ) : (
-          <LoadingSpinner />
-        )}
       </div>
     </BackgroundOverlay>
   );

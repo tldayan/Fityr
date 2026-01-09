@@ -1,0 +1,15 @@
+.OAuthHandler {
+    position: relative;
+  background-color: var(--background);
+  border: 1px solid var(--border-color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 400px);
+  z-index: 9999; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+}
