@@ -3,8 +3,12 @@ import { BASE_URL, ENDPOINTS } from "@/_lib/apiEndpoints";
 import { Event, Participant } from "@/types/events";
 import EventDetailsClient from "./EventDetailsClient";
 
-export default async function EventDetailsPage({ params }: { params: { id: string } }) {
-  
+interface EventDetailsPageProps {
+  params: { id: string };
+}
+
+export default async function EventDetailsPage({ params }: EventDetailsPageProps) {
+  // Fetch event
   const res: ApiResponse<Event[]> = await apiClient(
     `${BASE_URL}${ENDPOINTS.EVENTS.BASE}/${params.id}`
   );
@@ -13,6 +17,7 @@ export default async function EventDetailsPage({ params }: { params: { id: strin
     return <div>Event not found</div>;
   }
 
+  // Fetch participants
   const participantsRes: ApiResponse<{ data: Participant[] }> = await apiClient(
     `${BASE_URL}${ENDPOINTS.EVENTS.PARTICIPANTS(params.id)}`
   );
