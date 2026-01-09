@@ -1,12 +1,11 @@
 
 import "./globals.css";
-import { SidebarProvider } from "./context/SidebarContext";
+import { SidebarProvider } from "@/context/SidebarContext";
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
 import Sidebar from "../components/Sidebar/Sidebar";
 import ContentContainer from "../components/ContentContainer/ContentContainer";
 import localFont from "next/font/local";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import QueryProvider from "../providers/QueryProvider";
 import { StytchProviders } from "../providers/StytchProvider"; 
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
