@@ -31,7 +31,6 @@ export default function Header() {
     router.push(`/users/${user.name.first_name}`);
   };
 
-  console.log("from header", user)
   return (
     <header className={styles.header}>
       <Hambuger />

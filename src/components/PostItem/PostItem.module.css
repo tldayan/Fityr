@@ -13,6 +13,7 @@
 
 
 .first_name {
+  margin-top: 3px;
   color: var(--TertiaryColor);
   font-size: 0.8rem;
   text-decoration: none; 

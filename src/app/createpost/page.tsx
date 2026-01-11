@@ -5,9 +5,7 @@ import CustomTextInput from '@/components/CustomTextInput/CustomTextInput';
 import CustomAreaTextInput from '@/components/CustomTextAreaInput/CustomTextAreaInput';
 import ButtonStyles from "@/app/globalStyles/buttonStyles.module.css"
 import { myFont } from '@/app/layout';
-import shadowStyles from "@/app/globalStyles/containerShadowStyles.module.css"
 import AddImageIcon from '@/app/assets/icons/add-media-icon.svg';
-import CustomIconButton from '@/components/CustomIconButton/CustomIconButton';
 import CustomButton from '@/components/CustomButton/CustomButton';
 import { CustomImageModal } from '@/components/CustomImageModal/CustomImageModal';
 import { useApiMutation } from '@/hooks/useApiMutation';
@@ -101,6 +99,7 @@ const createPostMutation = useApiMutation<{ id: string }, PostInfo>(
       setPostInfo({ title: "", description: "" });
       setMedia([]);
       localStorage.removeItem("postInfo");
+      toast.success("Post created!")
     },
     onError: (err) => {
       console.error(err);

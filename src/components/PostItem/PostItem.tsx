@@ -134,8 +134,14 @@ export default function PostItem({
           </p>
 
           <p className={`${styles.description} ${!isOnPostPage ? styles.minimized : ""}`}>
-            {description}
+            {description.split("\n").map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
+
 
           <div onClick={(e) => e.stopPropagation()}>
             <ImageCarousel images={images || []} width={"100%"} loop={true} />
