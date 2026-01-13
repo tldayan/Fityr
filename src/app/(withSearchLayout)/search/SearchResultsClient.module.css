@@ -1,3 +1,10 @@
+.mainSearchResultsContainer {
+  margin-bottom: 100px;
+}
+
+
+
+
 .typeButton {
   background-color: var(--postsStatsContainerColor);
   color: var(--SecondaryTextColor);

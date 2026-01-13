@@ -23,7 +23,7 @@ export default function EventsClient({ dehydratedState }: any) {
 }
 
 function EventsContent() {
-  const [showHostButton, setShowHostButton] = useState(false);
+  const [showHostButton, setShowHostButton] = useState(true);
   const router = useRouter()
 
   useEffect(() => {

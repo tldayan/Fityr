@@ -25,14 +25,17 @@ const handleSearch = () => {
   if (!trimmed) return;
 
   const currentSearch = searchParams.get("searchterm") ?? "";
-  if (trimmed === currentSearch) return; 
+  if (trimmed === currentSearch) return;
+
+  const currentType = searchParams.get("type") ?? "posts";
 
   const params = new URLSearchParams();
   params.set("searchterm", trimmed);
-  params.set("type", "users");
+  params.set("type", currentType);
 
   router.push(`/search?${params.toString()}`);
 };
+
 
   return (
     <div className={styles.searchContainer}>

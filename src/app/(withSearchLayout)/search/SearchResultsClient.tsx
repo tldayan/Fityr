@@ -45,8 +45,8 @@ export default function SearchResultsClient({ initialData, type }: Props) {
   };
 
   return (
-    <div>
-      {/* Type Buttons */}
+    <div className={styles.mainSearchResultsContainer}>
+
       <div className={styles.typeButtonsContainer}>
         <CustomButton
           className={`${ButtonStyles.primary_button} ${styles.typeButton} ${
@@ -64,7 +64,7 @@ export default function SearchResultsClient({ initialData, type }: Props) {
         />
       </div>
 
-      {/* Results */}
+
       <div className={styles.searchResultsContainer}>
         {selectedType === "posts" &&
   initialData &&
