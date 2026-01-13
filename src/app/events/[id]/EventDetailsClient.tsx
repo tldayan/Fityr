@@ -1,7 +1,7 @@
 "use client";
 
 import { formatDateTime } from "@/_lib/format_date";
-import { Event, EventLocation, Participant } from "@/types/events";
+import { Event, Participant } from "@/types/events";
 import Image from "next/image";
 import styles from "./page.module.css"
 import CustomButton from "@/components/CustomButton/CustomButton";
@@ -22,7 +22,7 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
   const [loading, setLoading] = useState(false)
 
   const handleEvent = async () => {
-    console.log(user)
+
   if (!user) return console.log("User not logged in");
 
   setLoading(true);
@@ -56,8 +56,6 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
     setLoading(false);
   }
 };
-
-
 
   const host = participants.find((eachParticipant) => eachParticipant.user_id === event.host_id)
   const joined = currentParticipants.some((p) => p.user_id === user?.user_id);

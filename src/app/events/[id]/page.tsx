@@ -4,8 +4,8 @@ import { Event, Participant } from "@/types/events";
 import EventDetailsClient from "./EventDetailsClient";
 
 export default async function EventDetailsPage({ params }: any) {
-  const res: ApiResponse<Event[]> = await apiClient(
-    `${BASE_URL}${ENDPOINTS.EVENTS.BASE}/${params.id}`
+  const res: ApiResponse<Event> = await apiClient(
+    `${BASE_URL}${ENDPOINTS.EVENTS.DETAILS(params.id)}`
   );
 
   if (!res.ok || !res.data || res.data.length === 0) {
@@ -16,7 +16,8 @@ export default async function EventDetailsPage({ params }: any) {
     `${BASE_URL}${ENDPOINTS.EVENTS.PARTICIPANTS(params.id)}`
   );
 
-  const event = res.data[0];
+
+  const event = res.data;
   const participants =
     participantsRes.ok && participantsRes.data?.data
       ? participantsRes.data.data

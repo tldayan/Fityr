@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.fityr.xyz"; /* http://localhost:4000 */
+export const BASE_URL = "http://localhost:4000"; /* http://localhost:4000 */
 
 export const ENDPOINTS = {
   POSTS: "/posts",
