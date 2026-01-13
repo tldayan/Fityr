@@ -13,6 +13,7 @@ import { apiClient } from "@/utils/apiClient";
 import { BASE_URL, ENDPOINTS } from "@/_lib/apiEndpoints";
 import { useState } from "react";
 import { useStytchUser } from "@stytch/nextjs";
+import toast from "react-hot-toast";
 
 export default function EventDetailsClient({ event, participants }: { event: Event, participants: Participant[] }) {
 
@@ -23,7 +24,10 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
 
   const handleEvent = async () => {
 
-  if (!user) return console.log("User not logged in");
+  if (!user) {
+    toast.error("Please log in to create events!")
+    return
+  }
 
   setLoading(true);
   const joined = currentParticipants.some((p) => p.user_id === user.user_id);
@@ -61,7 +65,6 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
   const joined = currentParticipants.some((p) => p.user_id === user?.user_id);
 
   const locationObj = event.location;
-  console.log("participants",participants)
 
   return (
     <div className={styles.eventContainer}>
@@ -118,7 +121,7 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
         </div>
       </div>
       </ComponentContainer>
-      {host?.user_id !== user?.user_id && <CustomButton loading={loading} onClick={handleEvent} shadow className={`${ButtonStyles.primary_button} ${styles.attendEventButton} ${joined ? styles.leaveButton : ""}`} title={joined ? "Leave" : "Attend"} />}
+      {(host?.user_id !== user?.user_id || !user) && <CustomButton loading={loading} onClick={handleEvent} shadow className={`${ButtonStyles.primary_button} ${styles.attendEventButton} ${joined ? styles.leaveButton : ""}`} title={joined ? "Leave" : "Attend"} />}
               
     </div>
   );

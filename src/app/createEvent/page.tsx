@@ -33,15 +33,13 @@ export default function Page() {
   const [eventBannerSrc, setEventBannerSrc] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadingBanner, setUploadingBanner] = useState(false)
+  const [loading, setLoading] = useState(false)
 
 
   const handleEventBanner = () => {
     fileInputRef.current?.click();
   };
 
-  useEffect(() => {
-    console.log(eventInfo)
-  }, [eventInfo])
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -76,6 +74,7 @@ const handleCropDone = (croppedImage: string) => {
   };
 
   const handleHostEvent = async () => {
+    setLoading(true)
   try {
     setUploadingBanner(true);
 
@@ -130,6 +129,7 @@ const handleCropDone = (croppedImage: string) => {
   } finally {
     setUploadingBanner(false);
     setEventBannerSrc(null); 
+    setLoading(false)
   }
 };
 
@@ -223,8 +223,10 @@ const handleCropDone = (croppedImage: string) => {
 
       <CustomButton
         title="Host Event"
+        loading={loading}
         className={`${ButtonStyles.primary_button} ${styles.hostEventButton}`}
         onClick={handleHostEvent}
+        disabled={loading || uploadingBanner}
       />
 
       {showCropper && eventBannerSrc && (
