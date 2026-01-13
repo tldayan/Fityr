@@ -18,18 +18,18 @@ export default async function EventDetailsPage({ params }: any) {
 
   const rawEvent = res.data;
 
-/*   const event: Event = {
+  const event: Event = {
     ...rawEvent,
     location:
       typeof rawEvent.location === "string"
         ? JSON.parse(rawEvent.location)
         : rawEvent.location ?? null,
-  }; */
+  };
 
   const participants =
     participantsRes.ok && participantsRes.data?.data
       ? participantsRes.data.data
       : [];
 
-  return <EventDetailsClient event={rawEvent} participants={participants} />;
+  return <EventDetailsClient event={event} participants={participants} />;
 }

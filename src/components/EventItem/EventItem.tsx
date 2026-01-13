@@ -26,7 +26,11 @@ export default function EventItem({ event }: EventItemProps) {
     image_url
   } = event
 
-  const locationObj = JSON.parse(location)
+const locationObj =
+  location && typeof location === "string"
+    ? JSON.parse(location)
+    : location ?? { address: "Unknown location", lat: 0, lng: 0 };
+
 
 
   return (
