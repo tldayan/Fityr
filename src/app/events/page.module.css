@@ -5,8 +5,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 20px;
   align-items: center;
-/*   padding: 10px; */
+  margin-bottom: 100px;
   gap: 20px;
 }
 

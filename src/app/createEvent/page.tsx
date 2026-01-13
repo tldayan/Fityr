@@ -58,14 +58,31 @@ export default function Page() {
   };
 
 
-  const handleCropDone = async (croppedImage: string) => {
+const handleCropDone = (croppedImage: string) => {
+  setShowCropper(false);
+  setEventBannerSrc(croppedImage);
+};
+
+
+
+
+  const handleCancelCrop = () => {
     setShowCropper(false);
     setEventBannerSrc(null);
+  };
+
+  const handleEventDetails = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setEventInfo(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleHostEvent = async () => {
+  try {
     setUploadingBanner(true);
 
-    try {
+    let s3Url = eventInfo.eventBanner;
 
-      const blob = await (await fetch(croppedImage)).blob();
+    if (eventBannerSrc) {
+      const blob = await (await fetch(eventBannerSrc)).blob();
       const fileName = `banner-${Date.now()}.png`;
 
       const res = await apiClient<{ uploadUrl: string }>(
@@ -87,75 +104,72 @@ export default function Page() {
           "Content-Type": blob.type,
         },
       });
-      
+
       if (!uploadRes.ok) {
         throw new Error(`S3 upload failed: ${uploadRes.status} ${uploadRes.statusText}`);
       }
 
-      const s3Url = uploadUrl.split("?")[0];
-
-      setEventInfo(prev => ({ ...prev, eventBanner: s3Url }));
-    } catch (err) {
-      console.error("Upload error:", err);
-    } finally {
-      setUploadingBanner(false);
+      s3Url = uploadUrl.split("?")[0]; 
     }
-  };
 
+    const response = await apiClient(`${BASE_URL}${ENDPOINTS.EVENTS.CREATE}`, "POST", {
+      ...eventInfo,
+      eventBanner: s3Url,
+    });
 
-
-  const handleCancelCrop = () => {
-    setShowCropper(false);
-    setEventBannerSrc(null);
-  };
-
-  const handleEventDetails = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setEventInfo(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleHostEvent = async () => {
-    try {
-      const response = await apiClient(`${BASE_URL}${ENDPOINTS.EVENTS.CREATE}`, "POST", eventInfo);
-
-      if (!response.ok) {
-        toast.error(response.error);
-        return;
-      }
-
-      toast.success("Event created successfully!");
-      
-    } catch (err) {
-      toast.error("Something went wrong!");
+    if (!response.ok) {
+      toast.error(response.error || "Failed to create event");
+      return;
     }
-  };
+
+    toast.success("Event created successfully!");
+
+  } catch (err) {
+    console.error(err);
+    toast.error("Something went wrong!");
+  } finally {
+    setUploadingBanner(false);
+    setEventBannerSrc(null); 
+  }
+};
 
 
   return (
     <div className={styles.createEventContainer}>
       <h1 className={styles.event}>Host an Event</h1>
 
-      {/* Banner section */}
+
       <div className={styles.bannerContainer}>
-        {eventInfo.eventBanner ? (
+        {(eventBannerSrc || eventInfo.eventBanner) ? (
           <>
             <img
-              src={eventInfo.eventBanner}
+              src={eventBannerSrc || eventInfo.eventBanner}
               alt="Event Banner"
               className={styles.carBannerPreview}
             />
             <div className={styles.editOverlay}>
-              <EditIcon onClick={handleEventBanner} className={styles.editIcon} color='gray' width={22} height={22} />
+              <EditIcon
+                onClick={handleEventBanner}
+                className={styles.editIcon}
+                color="gray"
+                width={22}
+                height={22}
+              />
             </div>
           </>
         ) : (
-          uploadingBanner ? <LoadingSpinner size='small' /> : 
-          <CustomButton
-            onClick={handleEventBanner}
-            className={`${ButtonStyles.primary_button} ${styles.uploadBannerButton}`}
-            title="Upload Event Banner"
-          />
+          uploadingBanner ? (
+            <LoadingSpinner size="small" />
+          ) : (
+            <CustomButton
+              onClick={handleEventBanner}
+              className={`${ButtonStyles.primary_button} ${styles.uploadBannerButton}`}
+              title="Upload Event Banner"
+            />
+          )
         )}
       </div>
+
 
       <input
         ref={fileInputRef}

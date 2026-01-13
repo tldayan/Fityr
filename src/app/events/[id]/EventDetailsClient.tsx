@@ -61,7 +61,7 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
   const joined = currentParticipants.some((p) => p.user_id === user?.user_id);
 
   const locationObj = event.location;
-
+  console.log("participants",participants)
 
   return (
     <div className={styles.eventContainer}>
