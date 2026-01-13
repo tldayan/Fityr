@@ -8,7 +8,7 @@ export default async function EventDetailsPage({ params }: any) {
     `${BASE_URL}${ENDPOINTS.EVENTS.DETAILS(params.id)}`
   );
 
-  if (!res.ok || !res.data || res.data.length === 0) {
+  if (!res.ok || !res.data) {
     return <div>Event not found</div>;
   }
 
@@ -16,8 +16,16 @@ export default async function EventDetailsPage({ params }: any) {
     `${BASE_URL}${ENDPOINTS.EVENTS.PARTICIPANTS(params.id)}`
   );
 
+  const rawEvent = res.data;
 
-  const event = res.data;
+  const event: Event = {
+    ...rawEvent,
+    location:
+      typeof rawEvent.location === "string"
+        ? JSON.parse(rawEvent.location)
+        : rawEvent.location ?? null,
+  };
+
   const participants =
     participantsRes.ok && participantsRes.data?.data
       ? participantsRes.data.data

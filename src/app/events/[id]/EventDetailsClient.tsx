@@ -60,7 +60,8 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
   const host = participants.find((eachParticipant) => eachParticipant.user_id === event.host_id)
   const joined = currentParticipants.some((p) => p.user_id === user?.user_id);
 
-  const locationObj = JSON.parse(event.location)
+  const locationObj = event.location;
+
 
   return (
     <div className={styles.eventContainer}>
@@ -81,9 +82,9 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
       <div className={styles.eventDetails}>
         <p className={styles.eventDescription}>{event.event_description}</p>
         <p className={styles.date}>Date: {formatDateTime(event.event_start_time)}</p>
-        <p className={styles.location}>Location: {locationObj.address}</p>
+        {locationObj && <p className={styles.location}>Location: {locationObj.address}</p>}
       </div></ComponentContainer>
-      <iframe
+      {locationObj && <iframe
         width="100%"
         height="300"
         style={{ border: 0, borderRadius: "10px" }}
@@ -91,7 +92,7 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
         allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"
         src={`https://maps.google.com/maps?q=${locationObj.lat},${locationObj.lng}&hl=en&z=15&output=embed`}
-      />
+      />}
 
 
 

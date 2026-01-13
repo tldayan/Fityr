@@ -5,7 +5,11 @@ export interface Event {
   event_start_time: string;   
   event_end_time: string;     
   host_id: string;
-  location: string;
+  location: {
+    lat: number;
+    lng: number;
+    address?: string;
+  } | null;
   created_at: string;         
   updated_at: string;   
   participants: number; 
