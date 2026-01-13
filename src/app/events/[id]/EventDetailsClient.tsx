@@ -15,7 +15,7 @@ import { useState } from "react";
 import { useStytchUser } from "@stytch/nextjs";
 
 export default function EventDetailsClient({ event, participants }: { event: Event, participants: Participant[] }) {
-
+console.log(event)
   const [currentParticipants, setCurrentParticipants] = useState(participants); 
   const {user} = useStytchUser()
 
