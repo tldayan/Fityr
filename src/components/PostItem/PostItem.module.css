@@ -22,7 +22,7 @@
 .name {
   text-decoration: none;
   cursor: pointer;
- color: var(--TertiaryColor);
+  color: black;
 }
 
 .name:hover {

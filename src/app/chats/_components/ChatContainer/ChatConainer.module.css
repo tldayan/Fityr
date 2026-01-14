@@ -1,4 +1,19 @@
 .chatContainer {
 /*   border: 1px solid cyan; */
+  border-radius: 20px;
+  background:  #cccccc1a;
   width: 70%; 
+  display: flex;
+  flex-direction: column;
+}
+
+.chatInputContainer {
+/*   border: 1px solid cyan; */
+  padding: 10px;
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }

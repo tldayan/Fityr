@@ -1,5 +1,7 @@
 
 .chatsListContainer {
 /*   border: 1px solid red; */
+  border-radius: 20px;
+  background:  #cccccc1a;
   width: 30%
 }

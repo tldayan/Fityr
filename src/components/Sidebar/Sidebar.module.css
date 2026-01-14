@@ -1,6 +1,6 @@
 .sidebar {
   position: fixed;
-  top: 13vh; /* 7vh before */
+
   left: 0; 
   transform: translateX(-100%);
   width: 15vw;
@@ -14,7 +14,7 @@
   transition: transform 0.3s ease-in-out;
   padding: 1rem;
   z-index: 1000;
-  height: 85vh;
+/*   height: 85vh; */
   align-items: center;
   justify-content: space-evenly;
   transition: ease 0.5s;
@@ -55,5 +55,7 @@
 @media (max-width: 768px) {
   .sidebar {
     width: 100vw;
+    height: 100vh;
+    top: 0
   }
 }

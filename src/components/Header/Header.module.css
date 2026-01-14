@@ -7,7 +7,7 @@
   justify-content: space-between;
   background-color: var(--background);
   border: 1px solid var(--border-color);
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .logo {

@@ -15,6 +15,7 @@ import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { useQueryClient } from "@tanstack/react-query";
 import { Post } from "@/types/postTypes";
 import toast from "react-hot-toast";
+import CustomAreaTextInput from "@/components/CustomTextAreaInput/CustomTextAreaInput";
 
 
 
@@ -92,7 +93,7 @@ const {
 
   console.log(post)
   return (
-    <div/*  className={`${styles.postContainer} ${shadowStyles.containerShadow}`} */>
+    <div className={`${styles.postContainer}`}>
       <PostItem
         id={post.id}
         username={post.username}
@@ -109,11 +110,11 @@ const {
       </PostItem>
 
       <div className={styles.commentContainer}>
-        <CustomTextInput
+        <CustomAreaTextInput
+          name={comment}
           value={comment}
           placeholder="Add your comment"
           onChange={(e) => setComment(e.target.value)}
-          noMarginTop
         />
         {comment && <CustomButton loading={createCommentMutation.isPending} className={`${ButtonStyles.primary_button} ${styles.commentButton}`} onClick={handleComment} title="Comment" />}
       </div>

@@ -1,13 +1,11 @@
 .postContainer {
-  border-style: solid;
-  border-color: red;
-  border-width: 12px;
   border-radius: 2rem;
   background-color: #ffffffff;
   padding: 20px;
   display: flex;
   gap: 10px;
-  flex-direction: column
+  flex-direction: column;
+  margin-bottom: 50px;
 }
 
 .title {
@@ -23,8 +21,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 10px;
-  margin-top: 10px
 }
 
 .emptyPostsNotice {
@@ -34,5 +32,6 @@
 }
 
 .commentButton {
-  height: 40px;
+  height: 35px;
+  margin-left: auto;
 }
