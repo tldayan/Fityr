@@ -33,8 +33,7 @@ export default function PostItem({
   const [voteCount, setVoteCount] = useState(vote);
   const [currentUserVote, setCurrentUserVote] = useState<"upvote" | "downvote" | null>(userVote);
 
-  const debouncedVote = useDebounce(voteCount, 3000);
-
+  const debouncedVote = useDebounce(voteCount, 2000);
   const router = useRouter();
   const pathname = usePathname();
   const postUrl = `${ENDPOINTS.POSTS}/${id}`;

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 import PostItem from "@/components/PostItem/PostItem";
-import CustomTextInput from "@/components/CustomTextInput/CustomTextInput";
 import CustomButton from "@/components/CustomButton/CustomButton";
 import ButtonStyles from "@/app/globalStyles/buttonStyles.module.css"
 import { useApiMutation } from "@/hooks/useApiMutation";
@@ -91,7 +90,6 @@ const {
 
   const loadMoreRef = useInfiniteScroll(fetchNextPage, hasNextPage, isFetchingNextPage);
 
-  console.log(post)
   return (
     <div className={`${styles.postContainer}`}>
       <PostItem

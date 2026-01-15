@@ -106,7 +106,6 @@ const createReplyMutation = useApiMutation<CreateReplyResponse, CommentInfo>(
 );
 
 
-console.log(comment)
 const handleFetchMoreReplies = async() => {
   setLoading(true)
   const replies = await apiClient<RepliesResponse>(`${BASE_URL}${ENDPOINTS.REPLIES(comment.id)}`, "GET", {}, {}, {page: page.toString(), repliesCount: page.repliesCount.toString()})
@@ -186,7 +185,6 @@ const handleReply = () => {
     }
 };
 
-console.log(comment)
   return (
     <div className={styles.mainContianer}>
 

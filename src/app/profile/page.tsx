@@ -51,7 +51,7 @@ export default function Page() {
         setLoadingProfileInfo(true)
 
         const profileInfo = await apiClient<UserProfileResponse>(`${BASE_URL}${ENDPOINTS.PROFILE.GET_PROFILE_INFO}`, "GET")
-        console.log(profileInfo.data)
+
         if (profileInfo.ok && profileInfo.data) {
           const mappedProfile = {
             username: profileInfo.data.username ?? "",
@@ -181,10 +181,6 @@ const handleCancelCrop = () => {
   const handleProfileInfo = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     setProfileInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
-  useEffect(() => {
-    console.log(profileInfo)
-  }, [profileInfo])
 
   const handleProfileAction = async() => {
 
