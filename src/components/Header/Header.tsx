@@ -28,7 +28,7 @@ export default function Header() {
 
   const handleViewProfile = () => {
     if (!user?.name?.first_name) return;
-    router.push(`/users/${user.name.first_name}`);
+    router.push(`/profile`);
   };
 
   return (
