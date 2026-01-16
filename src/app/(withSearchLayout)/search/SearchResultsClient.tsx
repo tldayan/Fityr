@@ -67,28 +67,28 @@ export default function SearchResultsClient({ initialData, type }: Props) {
 
       <div className={styles.searchResultsContainer}>
         {selectedType === "posts" &&
-  initialData &&
-  "posts" in initialData &&
-  initialData.posts &&
-  initialData.posts.length ? (
-    initialData.posts.map((post: PostItemProps) => (
-      <PostItem
-        key={post.id}
-        id={post.id}
-        title={post.title}
-        description={post.description}
-        username={post.username}
-        created_at={post.created_at}
-        vote={0}
-        userVote={post.userVote}
-        commentCount={post.commentCount}
-        images={post.images}
-        noStats
-      />
-    ))
-  ) : selectedType === "posts" ? (
-    <p className={styles.noResults}>No results</p>
-  ) : null}
+          initialData &&
+          "posts" in initialData &&
+          initialData.posts &&
+          initialData.posts.length ? (
+            initialData.posts.map((post: PostItemProps) => (
+              <PostItem
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                description={post.description}
+                username={post.username}
+                created_at={post.created_at}
+                vote={0}
+                userVote={post.userVote}
+                commentCount={post.commentCount}
+                images={post.images}
+                noStats
+              />
+            ))
+          ) : selectedType === "posts" ? (
+            <p className={styles.noResults}>No results</p>
+          ) : null}
 
 
        {selectedType === "users" &&

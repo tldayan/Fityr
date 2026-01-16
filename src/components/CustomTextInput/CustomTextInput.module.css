@@ -30,7 +30,7 @@
   border-radius: 50px;
   text-indent: 10px;
   height: 40px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 600;
   border: 1px solid rgba(123, 123, 123, 0.103);
   background-color: var(--TextInputColor);
