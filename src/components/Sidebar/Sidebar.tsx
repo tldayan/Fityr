@@ -5,11 +5,13 @@ import styles from "./Sidebar.module.css";
 import { useSidebar } from '@/context/SidebarContext';
 import { myFont } from '@/app/layout';
 import { usePathname } from "next/navigation";
+import { useStytchUser } from '@stytch/nextjs';
 
 
 export default function Sidebar() {
   const { isOpen, setIsOpen } = useSidebar();
   const pathName = usePathname()
+  const {user} = useStytchUser()
 
   useEffect(() => {
     if (!isOpen) return;
@@ -37,7 +39,7 @@ export default function Sidebar() {
         <Link className={styles.links} href="/groups">Groups</Link>
       </li> */}
       <li className={`${styles.sidebarLink} ${myFont.className}`}>
-        <Link className={styles.links} href="/users/profile">Profile</Link>
+        <Link className={styles.links} href={`/users/${user?.name.first_name}`}>Profile</Link>
       </li>
     </ul>
   );
