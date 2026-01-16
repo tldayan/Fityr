@@ -25,7 +25,7 @@ export default function EventDetailsClient({ event, participants }: { event: Eve
   const handleEvent = async () => {
 
   if (!user) {
-    toast.error("Please log in to create events!")
+    toast.error("Please log in to attend events!")
     return
   }
 

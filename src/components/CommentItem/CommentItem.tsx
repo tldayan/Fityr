@@ -19,6 +19,7 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import useDebounce from "@/hooks/useDebounce";
 import { useRouter } from 'next/navigation';
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 interface CommentItemProps {
   comment: CommentResponse;
@@ -203,7 +204,7 @@ const handleReply = () => {
         <Avatar className={styles.profilePic} user={{username: comment.username, profilePic: comment.profile_pic ?? undefined}} />
         <div className={styles.userCommentInfo}>
           <div className={styles.usernameContainer}>
-            <span className={styles.commentUsername}>{comment.username}</span>
+            <Link style={{"textDecoration" : "none"}} href={`/users/${comment.username}`}><span className={styles.commentUsername}>{comment.username}</span></Link>
             <span className={styles.dot}>•</span>
             <span className={styles.commentTime}>{formatTimeAgo(comment.created_at)}</span>
           </div>

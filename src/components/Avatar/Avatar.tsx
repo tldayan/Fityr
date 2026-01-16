@@ -49,7 +49,7 @@ export default function Avatar({
   }
 
   return (
-    <Link href={`/${user.username}`}>
+    <Link href={`/users/${user.username}`}>
       {avatar}
     </Link>
   );
