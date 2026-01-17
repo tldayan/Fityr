@@ -40,7 +40,6 @@ export default function UserProfileContent({
 
   const events = eventsQuery.data?.pages.flatMap(page => page.items) ?? [];
 
-  console.log(events)
   const commentsQuery = useInfiniteData<CommentResponse>({
     key: ['userContent', username, 'comments'],
     endpoint: `${ENDPOINTS.USERS.GET_USER_CONTENT_TYPE}?contentType=comments&username=${username}`,
@@ -50,7 +49,7 @@ export default function UserProfileContent({
 
   const comments = commentsQuery.data?.pages.flatMap(page => page.items) ?? [];
   const activeQuery = profileSort === 'Posts' ? postsQuery : commentsQuery;
-
+  console.log("comments",comments)
   const {
     fetchNextPage,
     hasNextPage,

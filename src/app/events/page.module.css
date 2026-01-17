@@ -14,7 +14,7 @@
 .hostWrapper {
   position: fixed;
   left: 50%;
-  bottom: 5%;
+  bottom: 7.5%;
   transform: translateX(-50%) translateY(120px);
   transition: transform 0.4s ease-in-out;
   z-index: 1000;

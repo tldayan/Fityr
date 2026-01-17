@@ -85,7 +85,7 @@ const {
   limit: 10,
 });
 
-
+console.log(data)
 
 
   const loadMoreRef = useInfiniteScroll(fetchNextPage, hasNextPage, isFetchingNextPage);
