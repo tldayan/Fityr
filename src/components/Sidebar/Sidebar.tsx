@@ -27,7 +27,7 @@ export default function Sidebar() {
 
   const handleProfileClick = () => {
     if (!user) {
-      toast.error("You must be a logged in first!");
+      toast.error("You must be logged in first!");
       return;
     }
 
