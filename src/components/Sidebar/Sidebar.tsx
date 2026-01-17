@@ -57,7 +57,7 @@ export default function Sidebar() {
       <li className={`${styles.sidebarLink} ${myFont.className}`}>
         <button
           type="button"
-          className={styles.links}
+          className={`${styles.sidebarLink} ${myFont.className}`}
           onClick={handleProfileClick}
         >
           Profile
