@@ -11,7 +11,7 @@ export default function ChatContainer() {
 
   return (
     <div className={styles.chatContainer}>
-      <h3>Chat container</h3>
+{/*       <h3>Chat container</h3> */}
       <div className={styles.chatInputContainer}>
         <CustomTextInput placeholder='Enter message' onChange={(e) => setMessage(e.target.value)} value={message} noMarginTop />
         <SendIcon width={30} height={30} strokeWidth={1.5} color='gray' style={{ cursor: "pointer" }} />

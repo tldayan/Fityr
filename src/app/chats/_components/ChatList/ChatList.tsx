@@ -4,6 +4,8 @@ import styles from "./ChatList.module.css"
 export default function ChatList() {
   
   return (
-    <div className={styles.chatsListContainer}>ChatList</div>
+    <div className={styles.chatsListContainer}>
+{/*       <h3>Chatlist</h3> */}
+    </div>
   )
 }
