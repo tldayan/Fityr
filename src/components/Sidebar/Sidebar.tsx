@@ -1,67 +1,60 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import styles from "./Sidebar.module.css";
 import { useSidebar } from "@/context/SidebarContext";
 import { myFont } from "@/app/layout";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useStytchUser } from "@stytch/nextjs";
 import toast from "react-hot-toast";
 
 export default function Sidebar() {
   const { isOpen, setIsOpen } = useSidebar();
-  const pathName = usePathname();
   const router = useRouter();
   const { user } = useStytchUser();
 
-  // Close sidebar on route change (mobile only)
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    if (!isMobile) return;
-
-    setIsOpen(false);
-  }, [pathName, isOpen, setIsOpen]);
-
-  const handleProfileClick = () => {
+  const handleProfileClick = (e: React.MouseEvent) => {
     if (!user) {
+      e.preventDefault(); 
       toast.error("You must be logged in first!");
       return;
     }
+    setIsOpen(false);
+  };
 
-    router.push(`/users/${user.name.first_name}`);
+  const handleLinkClick = () => {
+    setIsOpen(false);
   };
 
   return (
     <ul className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
       <li className={`${styles.sidebarLink} ${myFont.className}`}>
-        <Link className={styles.links} href="/">
+        <Link className={styles.links} href="/" onClick={handleLinkClick}>
           Feed
         </Link>
       </li>
 
       <li className={`${styles.sidebarLink} ${myFont.className}`}>
-        <Link className={styles.links} href="/events">
+        <Link className={styles.links} href="/events" onClick={handleLinkClick}>
           Events
         </Link>
       </li>
 
       <li className={`${styles.sidebarLink} ${myFont.className}`}>
-        <Link className={styles.links} href="/chats">
+        <Link className={styles.links} href="/chats" onClick={handleLinkClick}>
           Chats
         </Link>
       </li>
 
       <li className={`${styles.sidebarLink} ${myFont.className}`}>
-        <button
-          type="button"
-          className={`${styles.sidebarLink} ${myFont.className}`}
+        <Link
+          className={styles.links}
+          href={user ? `/users/${user.name.first_name}` : "#"}
           onClick={handleProfileClick}
         >
           Profile
-        </button>
+        </Link>
       </li>
     </ul>
   );
